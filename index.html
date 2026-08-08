@@ -653,16 +653,7 @@
     object-fit: cover;
     display: block;
   }
-  /* Número placeholder (visible mientras no haya imagen) */
-  .card-label {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Oswald', sans-serif;
-    font-size: 72px; font-weight: 700;
-    color: rgba(199,154,92,0.1);
-    pointer-events: none;
-    z-index: 1;
-  }
+
   /* Card activa — protagonista */
   .carousel-card.is-active { cursor: default; }
   .carousel-card.is-active .card-inner {
@@ -860,16 +851,6 @@
   }
 
   @media (max-width: 768px) {
-    /* Fix parallax on mobile: disable transform, use static background */
-    .servicios-parallax-bg {
-      top: 0;
-      bottom: 0;
-      background-size: cover;
-      background-position: center 30%;
-      background-attachment: scroll;
-      will-change: auto;
-      transform: none !important;
-    }
     header {
       padding: 10px 4vw;
     }
@@ -1110,61 +1091,14 @@
   </div>
   <div class="carousel-wrapper">
     <div class="carousel-scene">
-      <!--
-        ★ INSTRUCCIONES:
-        Reemplaza el src="gallery-X.jpg" de cada <img> con la ruta de tus imágenes reales.
-        Mientras no existan, se mostrará el fondo oscuro con el número como placeholder.
-        Puedes añadir o quitar cards duplicando/eliminando bloques .carousel-card.
-      -->
-      <div class="carousel-card">
-        <div class="card-inner">
-          <img src="gallery-1.jpg" alt="Corte degradado profesional" onerror="this.style.display='none'">
-          <div class="card-overlay"></div>
-          <span class="card-label">01</span>
-        </div>
-      </div>
-      <div class="carousel-card">
-        <div class="card-inner">
-          <img src="gallery-2.jpg" alt="Afeitado clásico a navaja" onerror="this.style.display='none'">
-          <div class="card-overlay"></div>
-          <span class="card-label">02</span>
-        </div>
-      </div>
-      <div class="carousel-card">
-        <div class="card-inner">
-          <img src="gallery-3.jpg" alt="Interior de la barbería" onerror="this.style.display='none'">
-          <div class="card-overlay"></div>
-          <span class="card-label">03</span>
-        </div>
-      </div>
-      <div class="carousel-card">
-        <div class="card-inner">
-          <img src="gallery-4.jpg" alt="Trabajo de tijera y peine" onerror="this.style.display='none'">
-          <div class="card-overlay"></div>
-          <span class="card-label">04</span>
-        </div>
-      </div>
-      <div class="carousel-card">
-        <div class="card-inner">
-          <img src="gallery-5.jpg" alt="Herramientas de barbero" onerror="this.style.display='none'">
-          <div class="card-overlay"></div>
-          <span class="card-label">05</span>
-        </div>
-      </div>
-      <div class="carousel-card">
-        <div class="card-inner">
-          <img src="gallery-6.jpg" alt="Tratamiento con toalla caliente" onerror="this.style.display='none'">
-          <div class="card-overlay"></div>
-          <span class="card-label">06</span>
-        </div>
-      </div>
-      <div class="carousel-card">
-        <div class="card-inner">
-          <img src="gallery-7.jpg" alt="Resultado final del corte" onerror="this.style.display='none'">
-          <div class="card-overlay"></div>
-          <span class="card-label">07</span>
-        </div>
-      </div>
+      <!-- Reemplaza cada src con la ruta de tu imagen real -->
+      <div class="carousel-card"><div class="card-inner"><img src="gallery-1.jpg" alt="Corte degradado profesional"></div></div>
+      <div class="carousel-card"><div class="card-inner"><img src="gallery-2.jpg" alt="Afeitado clásico a navaja"></div></div>
+      <div class="carousel-card"><div class="card-inner"><img src="gallery-3.jpg" alt="Interior de la barbería"></div></div>
+      <div class="carousel-card"><div class="card-inner"><img src="gallery-4.jpg" alt="Trabajo de tijera y peine"></div></div>
+      <div class="carousel-card"><div class="card-inner"><img src="gallery-5.jpg" alt="Herramientas de barbero"></div></div>
+      <div class="carousel-card"><div class="card-inner"><img src="gallery-6.jpg" alt="Tratamiento con toalla caliente"></div></div>
+      <div class="carousel-card"><div class="card-inner"><img src="gallery-7.jpg" alt="Resultado final del corte"></div></div>
     </div>
     <button class="carousel-btn carousel-prev" aria-label="Imagen anterior">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
@@ -1247,20 +1181,12 @@
     });
   });
 
-  // Parallax Engine for Servicios Section (desktop only)
+  // Parallax Engine for Servicios Section
   const serviciosSection = document.getElementById('servicios');
   const serviciosBg = document.querySelector('.servicios-parallax-bg');
   if (serviciosSection && serviciosBg) {
-    // Disable parallax on mobile/touch for smooth scrolling
-    const isMobile = () => window.innerWidth <= 768 || 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
     let ticking = false;
     const updateParallax = () => {
-      if (isMobile()) {
-        serviciosBg.style.transform = 'none';
-        ticking = false;
-        return;
-      }
       const rect = serviciosSection.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       if (rect.top < windowHeight && rect.bottom > 0) {
@@ -1273,6 +1199,12 @@
     };
     const options = { passive: true };
     window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    }, options);
+    window.addEventListener('touchmove', () => {
       if (!ticking) {
         window.requestAnimationFrame(updateParallax);
         ticking = true;
