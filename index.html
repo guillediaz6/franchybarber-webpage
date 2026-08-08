@@ -594,35 +594,161 @@
     text-transform:uppercase;
   }
 
-  /* ===================== GALERIA ===================== */
-  .gallery-grid{
-    display:grid;
-    grid-template-columns:repeat(4, 1fr);
-    grid-auto-rows:190px;
-    gap:14px;
-    max-width:1180px;
-    margin:0 auto;
+  /* ===================== GALERÍA — CARRUSEL 3D DIAGONAL ===================== */
+  #galeria { overflow: hidden; }
+  .carousel-wrapper {
+    position: relative;
+    max-width: 1300px;
+    margin: 0 auto;
   }
-  .gallery-grid > div{
-    background:var(--navy);
-    display:flex; align-items:center; justify-content:center;
-    position:relative;
-    overflow:hidden;
+  .carousel-scene {
+    position: relative;
+    perspective: 1200px;
+    height: 460px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
   }
-  .gallery-grid > div svg{
-    width:38%; height:38%;
-    color:var(--gold);
-    opacity:0.85;
-    transition:transform .4s ease;
+  .carousel-scene:active { cursor: grabbing; }
+
+  .carousel-card {
+    position: absolute;
+    width: 340px;
+    height: 400px;
+    transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1),
+                opacity  0.7s cubic-bezier(0.23, 1, 0.32, 1),
+                filter   0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-origin: center bottom;
+    will-change: transform, opacity;
   }
-  .gallery-grid > div:hover svg{transform:scale(1.12) rotate(-3deg);}
-  .gallery-grid > div::after{
-    content:"";
-    position:absolute; inset:0;
-    background:linear-gradient(160deg, transparent 60%, rgba(0,0,0,0.35));
+  .card-inner {
+    position: relative;
+    width: 100%; height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--navy);
+    border: 1px solid rgba(199,154,92,0.2);
+    box-shadow:
+      0 18px 45px rgba(0,0,0,0.22),
+      0 6px 16px rgba(0,0,0,0.14);
+    transition: box-shadow 0.7s cubic-bezier(0.23,1,0.32,1),
+                border-color 0.7s ease;
   }
-  .g-tall{grid-row:span 2;}
-  .g-wide{grid-column:span 2;}
+  /* Sombra inferior — efecto "carta levantada" */
+  .card-inner::after {
+    content: '';
+    position: absolute;
+    bottom: -12px; left: 14%; right: 14%;
+    height: 22px;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.28) 0%, transparent 72%);
+    filter: blur(8px);
+    z-index: -1;
+    pointer-events: none;
+  }
+  .carousel-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* Número placeholder (visible mientras no haya imagen) */
+  .card-label {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 72px; font-weight: 700;
+    color: rgba(199,154,92,0.1);
+    pointer-events: none;
+    z-index: 1;
+  }
+  /* Card activa — protagonista */
+  .carousel-card.is-active { cursor: default; }
+  .carousel-card.is-active .card-inner {
+    border-color: var(--gold);
+    box-shadow:
+      0 32px 72px rgba(0,0,0,0.32),
+      0 12px 32px rgba(0,0,0,0.22),
+      inset 0 1px 0 rgba(199,154,92,0.12);
+  }
+  .carousel-card.is-active .card-inner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent 5%, var(--gold-light) 30%, var(--gold) 50%, var(--gold-light) 70%, transparent 95%);
+    z-index: 3;
+  }
+  /* Overlay sutil en cards laterales */
+  .carousel-card:not(.is-active) .card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(16,24,31,0.25) 0%, transparent 50%);
+    z-index: 2; pointer-events: none;
+  }
+  /* Flechas de navegación */
+  .carousel-btn {
+    position: absolute; top: 50%;
+    transform: translateY(-50%);
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: rgba(251,246,235,0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--navy);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10; padding: 0;
+  }
+  .carousel-btn:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--navy-deep);
+    box-shadow: 0 4px 20px rgba(199,154,92,0.3);
+  }
+  .carousel-btn svg { width: 22px; height: 22px; }
+  .carousel-prev { left: 10px; }
+  .carousel-next { right: 10px; }
+  /* Indicadores (dots) */
+  .carousel-dots {
+    display: flex; justify-content: center;
+    gap: 12px; margin-top: 36px;
+  }
+  .carousel-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    padding: 0;
+  }
+  .carousel-dot.active {
+    background: var(--gold);
+    transform: scale(1.3);
+    box-shadow: 0 0 10px rgba(199,154,92,0.35);
+  }
+  /* Carousel — responsive */
+  @media (max-width: 768px) {
+    .carousel-card { width: 290px; height: 350px; }
+    .carousel-scene { height: 390px; }
+    .carousel-btn { width: 42px; height: 42px; }
+    .carousel-btn svg { width: 18px; height: 18px; }
+    .carousel-prev { left: 4px; }
+    .carousel-next { right: 4px; }
+    .carousel-dots { margin-top: 28px; gap: 10px; }
+  }
+  @media (max-width: 480px) {
+    .carousel-card { width: 260px; height: 320px; }
+    .carousel-scene { height: 360px; }
+    .carousel-dots { margin-top: 22px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .carousel-card,
+    .card-inner { transition: none !important; }
+  }
 
   /* ===================== HORARIO / BOARD ===================== */
   #horario {
@@ -730,9 +856,7 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 24px;
     }
-    .gallery-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
+
   }
 
   @media (max-width: 768px) {
@@ -798,16 +922,7 @@
     .ticket {
       padding: 28px 22px 24px;
     }
-    .gallery-grid {
-      grid-template-columns: repeat(2, 1fr);
-      grid-auto-rows: 150px;
-    }
-    .g-tall {
-      grid-row: span 1;
-    }
-    .g-wide {
-      grid-column: span 1;
-    }
+
     .board-wrap {
       padding: 30px 20px;
     }
@@ -837,10 +952,7 @@
       height: 115px;
       max-width: 46vw;
     }
-    .gallery-grid {
-      grid-template-columns: 1fr;
-      grid-auto-rows: 180px;
-    }
+
     footer {
       flex-direction: column;
       text-align: center;
@@ -990,31 +1102,77 @@
   </div>
 </section>
 
-<!-- GALERIA -->
+<!-- GALERÍA — CARRUSEL 3D DIAGONAL -->
 <section id="galeria">
   <div class="section-head">
     <span class="eyebrow">Un vistazo</span>
     <h2>Galería</h2>
   </div>
-  <div class="gallery-grid">
-    <div class="g-tall">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="10.2" y="2" width="3.6" height="20" rx="1.8"/><path d="M8 5 L16 5 M8 9 L16 9 M8 19 L16 19"/></svg>
+  <div class="carousel-wrapper">
+    <div class="carousel-scene">
+      <!--
+        ★ INSTRUCCIONES:
+        Reemplaza el src="gallery-X.jpg" de cada <img> con la ruta de tus imágenes reales.
+        Mientras no existan, se mostrará el fondo oscuro con el número como placeholder.
+        Puedes añadir o quitar cards duplicando/eliminando bloques .carousel-card.
+      -->
+      <div class="carousel-card">
+        <div class="card-inner">
+          <img src="gallery-1.jpg" alt="Corte degradado profesional" onerror="this.style.display='none'">
+          <div class="card-overlay"></div>
+          <span class="card-label">01</span>
+        </div>
+      </div>
+      <div class="carousel-card">
+        <div class="card-inner">
+          <img src="gallery-2.jpg" alt="Afeitado clásico a navaja" onerror="this.style.display='none'">
+          <div class="card-overlay"></div>
+          <span class="card-label">02</span>
+        </div>
+      </div>
+      <div class="carousel-card">
+        <div class="card-inner">
+          <img src="gallery-3.jpg" alt="Interior de la barbería" onerror="this.style.display='none'">
+          <div class="card-overlay"></div>
+          <span class="card-label">03</span>
+        </div>
+      </div>
+      <div class="carousel-card">
+        <div class="card-inner">
+          <img src="gallery-4.jpg" alt="Trabajo de tijera y peine" onerror="this.style.display='none'">
+          <div class="card-overlay"></div>
+          <span class="card-label">04</span>
+        </div>
+      </div>
+      <div class="carousel-card">
+        <div class="card-inner">
+          <img src="gallery-5.jpg" alt="Herramientas de barbero" onerror="this.style.display='none'">
+          <div class="card-overlay"></div>
+          <span class="card-label">05</span>
+        </div>
+      </div>
+      <div class="carousel-card">
+        <div class="card-inner">
+          <img src="gallery-6.jpg" alt="Tratamiento con toalla caliente" onerror="this.style.display='none'">
+          <div class="card-overlay"></div>
+          <span class="card-label">06</span>
+        </div>
+      </div>
+      <div class="carousel-card">
+        <div class="card-inner">
+          <img src="gallery-7.jpg" alt="Resultado final del corte" onerror="this.style.display='none'">
+          <div class="card-overlay"></div>
+          <span class="card-label">07</span>
+        </div>
+      </div>
     </div>
-    <div>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 4 L18 16 M18 4 L6 16" /><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
-    </div>
-    <div class="g-wide">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 20 C6 10, 10 4, 12 2 C14 4, 18 10, 20 20 Z"/><path d="M12 2 L12 20"/></svg>
-    </div>
-    <div>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 6 L21 6 L19 20 L5 20 Z"/><path d="M8 6 L8 3 L16 3 L16 6"/></svg>
-    </div>
-    <div class="g-wide">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 10 L20 10 M4 14 L20 14"/><rect x="2" y="6" width="20" height="12" rx="2"/></svg>
-    </div>
-    <div>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="8" r="4"/><path d="M4 21 C4 15, 8 13, 12 13 C16 13, 20 15, 20 21"/></svg>
-    </div>
+    <button class="carousel-btn carousel-prev" aria-label="Imagen anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="carousel-btn carousel-next" aria-label="Imagen siguiente">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 6 15 12 9 18"/></svg>
+    </button>
+    <div class="carousel-dots"></div>
   </div>
 </section>
 
@@ -1123,6 +1281,142 @@
     window.addEventListener('resize', updateParallax, options);
     updateParallax();
   }
+
+  // ===================== GALERÍA — CARRUSEL 3D DIAGONAL =====================
+  (function () {
+    const scene = document.querySelector('.carousel-scene');
+    const cards = Array.from(document.querySelectorAll('.carousel-card'));
+    const prevBtn = document.querySelector('.carousel-prev');
+    const nextBtn = document.querySelector('.carousel-next');
+    const dotsWrap = document.querySelector('.carousel-dots');
+    if (!scene || !cards.length) return;
+
+    let active = 0;
+    const total = cards.length;
+
+    // Crear dots
+    cards.forEach(function (_, i) {
+      const d = document.createElement('button');
+      d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Ir a imagen ' + (i + 1));
+      d.addEventListener('click', function () { goTo(i); });
+      dotsWrap.appendChild(d);
+    });
+    const dots = Array.from(dotsWrap.children);
+
+    function getW () { return cards[0].offsetWidth || 340; }
+
+    function layout () {
+      const w = getW();
+      const vw = window.innerWidth;
+      const mobile = vw <= 600;
+
+      cards.forEach(function (card, i) {
+        var off = i - active;
+        if (off > Math.floor(total / 2)) off -= total;
+        if (off < -Math.floor(total / 2)) off += total;
+        var abs = Math.abs(off);
+
+        var tx, ty, rx, ry, rz, sc, op, zi, fl;
+
+        if (off === 0) {
+          // Centro — card protagonista, levantada sutilmente
+          tx = 0; ty = 0;
+          rx = 2; ry = 0; rz = -0.5;
+          sc = 1; op = 1; zi = 5;
+          fl = 'brightness(1)';
+          card.classList.add('is-active');
+        } else if (abs === 1) {
+          // Adyacentes — inclinadas con efecto diagonal
+          tx = off * (w * 0.82);
+          ty = 14;
+          rx = 4; ry = off * -5; rz = off * 2.5;
+          sc = 0.82; op = 0.88; zi = 4;
+          fl = 'brightness(0.72)';
+          card.classList.remove('is-active');
+        } else if (abs === 2) {
+          // Lejanas — más rotadas, más pequeñas
+          tx = off * (w * 0.74);
+          ty = 30;
+          rx = 6; ry = off * -9; rz = off * 4;
+          sc = 0.66; op = mobile ? 0 : 0.55; zi = 3;
+          fl = 'brightness(0.5)';
+          card.classList.remove('is-active');
+        } else {
+          // Ocultas
+          tx = off * (w * 0.6);
+          ty = 45;
+          rx = 8; ry = off > 0 ? -14 : 14; rz = off > 0 ? 5 : -5;
+          sc = 0.5; op = 0; zi = 1;
+          fl = 'brightness(0.3)';
+          card.classList.remove('is-active');
+        }
+
+        card.style.transform =
+          'translate3d(' + tx + 'px,' + ty + 'px,0) ' +
+          'rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) rotateZ(' + rz + 'deg) ' +
+          'scale(' + sc + ')';
+        card.style.opacity = op;
+        card.style.zIndex = zi;
+        card.style.filter = fl;
+        card.style.pointerEvents = abs <= 2 ? 'auto' : 'none';
+      });
+
+      dots.forEach(function (d, i) { d.classList.toggle('active', i === active); });
+    }
+
+    function goTo (i) {
+      active = ((i % total) + total) % total;
+      layout();
+    }
+
+    prevBtn.addEventListener('click', function () { goTo(active - 1); });
+    nextBtn.addEventListener('click', function () { goTo(active + 1); });
+
+    // Click en card para centrarla
+    cards.forEach(function (c, i) {
+      c.addEventListener('click', function () { if (i !== active) goTo(i); });
+    });
+
+    // Teclado
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft')  goTo(active - 1);
+      if (e.key === 'ArrowRight') goTo(active + 1);
+    });
+
+    // Touch swipe
+    var t0x = 0, t0y = 0;
+    scene.addEventListener('touchstart', function (e) {
+      t0x = e.touches[0].clientX;
+      t0y = e.touches[0].clientY;
+    }, { passive: true });
+    scene.addEventListener('touchend', function (e) {
+      var dx = e.changedTouches[0].clientX - t0x;
+      var dy = e.changedTouches[0].clientY - t0y;
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 35) {
+        dx < 0 ? goTo(active + 1) : goTo(active - 1);
+      }
+    }, { passive: true });
+
+    // Mouse drag
+    var m0 = 0, dragging = false;
+    scene.addEventListener('mousedown', function (e) {
+      m0 = e.clientX; dragging = true; e.preventDefault();
+    });
+    document.addEventListener('mouseup', function (e) {
+      if (!dragging) return;
+      dragging = false;
+      var dx = e.clientX - m0;
+      if (Math.abs(dx) > 35) { dx < 0 ? goTo(active + 1) : goTo(active - 1); }
+    });
+
+    // Resize
+    window.addEventListener('resize', layout, { passive: true });
+
+    // Init
+    layout();
+  })();
+
 </script>
 </body>
 </html>
