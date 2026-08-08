@@ -522,7 +522,7 @@
     z-index: 0;
     background-image: linear-gradient(rgba(16, 24, 31, 0.82), rgba(16, 24, 31, 0.82)), url('fondo.png');
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
     will-change: transform;
     pointer-events: none;
@@ -736,6 +736,16 @@
   }
 
   @media (max-width: 768px) {
+    /* Fix parallax on mobile: disable transform, use static background */
+    .servicios-parallax-bg {
+      top: 0;
+      bottom: 0;
+      background-size: cover;
+      background-position: center 30%;
+      background-attachment: scroll;
+      will-change: auto;
+      transform: none !important;
+    }
     header {
       padding: 10px 4vw;
     }
@@ -1079,12 +1089,20 @@
     });
   });
 
-  // Mobile DevTools & Touch Parallax Engine for Servicios Section
+  // Parallax Engine for Servicios Section (desktop only)
   const serviciosSection = document.getElementById('servicios');
   const serviciosBg = document.querySelector('.servicios-parallax-bg');
   if (serviciosSection && serviciosBg) {
+    // Disable parallax on mobile/touch for smooth scrolling
+    const isMobile = () => window.innerWidth <= 768 || 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
     let ticking = false;
     const updateParallax = () => {
+      if (isMobile()) {
+        serviciosBg.style.transform = 'none';
+        ticking = false;
+        return;
+      }
       const rect = serviciosSection.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       if (rect.top < windowHeight && rect.bottom > 0) {
@@ -1097,12 +1115,6 @@
     };
     const options = { passive: true };
     window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateParallax);
-        ticking = true;
-      }
-    }, options);
-    window.addEventListener('touchmove', () => {
       if (!ticking) {
         window.requestAnimationFrame(updateParallax);
         ticking = true;
