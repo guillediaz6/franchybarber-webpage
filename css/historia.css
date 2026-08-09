@@ -822,3 +822,10 @@
   }
 
   :focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+
+  .footer-legal { text-align: center; margin-bottom: 15px; }
+  .legal-links a { color: var(--line); font-size: 11px; text-decoration: none; margin: 0 5px; font-family: 'Oswald', sans-serif; letter-spacing: 0.1em; }
+  .legal-links a:hover { color: var(--gold); }
+  .credit { font-family: 'Oswald', sans-serif; font-size: 10px; color: rgba(242,233,214,0.4); text-align: center; margin-top: 15px; letter-spacing: 0.1em; width: 100%;}
+  .credit a { color: var(--gold-light); text-decoration: none; }
+  .credit a:hover { text-decoration: underline; }
