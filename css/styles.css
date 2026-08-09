@@ -595,7 +595,7 @@
   .carousel-scene {
     position: relative;
     perspective: 1200px;
-    height: 460px;
+    height: 520px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -607,8 +607,8 @@
 
   .carousel-card {
     position: absolute;
-    width: 340px;
-    height: 400px;
+    width: 380px;
+    height: 450px;
     transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1),
                 opacity  0.7s cubic-bezier(0.23, 1, 0.32, 1),
                 filter   0.7s cubic-bezier(0.23, 1, 0.32, 1);
@@ -714,8 +714,8 @@
   }
   /* Carousel — responsive */
   @media (max-width: 768px) {
-    .carousel-card { width: 290px; height: 350px; }
-    .carousel-scene { height: 390px; }
+    .carousel-card { width: 320px; height: 390px; }
+    .carousel-scene { height: 430px; }
     .carousel-btn { width: 42px; height: 42px; }
     .carousel-btn svg { width: 18px; height: 18px; }
     .carousel-prev { left: 4px; }
@@ -723,8 +723,8 @@
     .carousel-dots { margin-top: 28px; gap: 10px; }
   }
   @media (max-width: 480px) {
-    .carousel-card { width: 260px; height: 320px; }
-    .carousel-scene { height: 360px; }
+    .carousel-card { width: 290px; height: 360px; }
+    .carousel-scene { height: 400px; }
     .carousel-dots { margin-top: 22px; }
   }
   @media (prefers-reduced-motion: reduce) {

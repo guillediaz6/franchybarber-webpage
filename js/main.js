@@ -73,7 +73,7 @@ const navToggle = document.querySelector('.nav-toggle');
     });
     const dots = Array.from(dotsWrap.children);
 
-    function getW () { return cards[0].offsetWidth || 340; }
+    function getW () { return cards[0].offsetWidth || 380; }
 
     function layout () {
       const w = getW();
