@@ -942,5 +942,9 @@
 .legal-links a { color: var(--gold-light); font-size: 11px; text-decoration: none; margin: 0 5px; font-family: 'Oswald', sans-serif; letter-spacing: 0.1em; }
 .legal-links a:hover { color: var(--gold); }
 .credit { font-family: 'Oswald', sans-serif; font-size: 10px; color: rgba(242,233,214,0.55); text-align: center; margin-top: 15px; letter-spacing: 0.1em; width: 100%;}
-.credit a { color: var(--gold-light); text-decoration: none; }
-.credit a:hover { text-decoration: underline; }
+  .credit a { color: var(--gold-light); text-decoration: none; }
+  .credit a:hover { text-decoration: underline; }
+
+  .contact-ig-link { color: var(--gold); display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+  .contact-ig-link svg { width: 34px; height: 34px; }
+  .contact-ig-link:hover { transform: scale(1.15) translateY(-3px); color: var(--gold-light); filter: drop-shadow(0 4px 8px rgba(199,154,92,0.3)); }
