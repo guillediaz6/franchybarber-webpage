@@ -791,6 +791,83 @@
     color:var(--gold-light);
   }
   .contact-list svg{width:20px; height:20px; color:var(--gold); flex-shrink:0; margin-top:2px;}
+
+  /* ===================== REVIEWS ===================== */
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 6vw;
+  }
+  .review-card {
+    background: rgba(16,24,31,0.6);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 35px 30px 30px;
+    text-align: center;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(6px);
+  }
+  .review-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 35px rgba(199,154,92,0.15);
+    border-color: var(--gold);
+  }
+  .review-stars {
+    color: var(--gold);
+    font-size: 22px;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+  }
+  .review-scissors {
+    width: 22px;
+    height: 22px;
+    color: var(--gold-light);
+    opacity: 0.5;
+    margin-bottom: 16px;
+  }
+  .review-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--cream);
+    margin-bottom: 22px;
+  }
+  .review-divider {
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 18px;
+  }
+  .review-author {
+    display: block;
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .review-source {
+    display: block;
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: rgba(228,195,136,0.45);
+  }
+
+  @media (max-width: 860px) {
+    .reviews-grid {
+      grid-template-columns: 1fr;
+      max-width: 500px;
+      gap: 22px;
+    }
+  }
+
   .map-frame{
     border:1px solid var(--line);
     aspect-ratio:1/0.95;
