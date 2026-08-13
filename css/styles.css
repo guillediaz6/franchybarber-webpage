@@ -802,6 +802,24 @@
     position:relative;
   }
   .map-frame svg{width:56px; height:56px; color:var(--gold);}
+  
+  .bg-pizarra {
+    background-image: url('../img/pizarra.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+  .bg-pizarra::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: rgba(16,24,31,0.85); /* oscuro para que resalte el dorado */
+    pointer-events: none;
+  }
+  .bg-pizarra > * {
+    position: relative;
+    z-index: 1;
+  }
 
   footer{
     background:var(--navy-deep);
