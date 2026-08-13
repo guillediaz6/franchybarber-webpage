@@ -772,6 +772,16 @@
   .board-row.closed .time{color:#8a7f6d; font-style:italic; font-family:'Cormorant Garamond', serif;}
 
   /* ===================== CONTACT / FOOTER ===================== */
+  #contacto {
+    position: relative;
+    z-index: 5;
+    margin-bottom: -30px;
+    padding-bottom: 150px;
+    clip-path: polygon(
+      0% 0%, 100% 0%,
+      100% calc(100% - 25px), 96% calc(100% - 10px), 91% calc(100% - 28px), 85% calc(100% - 12px), 79% calc(100% - 29px), 73% calc(100% - 9px), 67% calc(100% - 28px), 61% calc(100% - 11px), 55% calc(100% - 27px), 49% calc(100% - 8px), 43% calc(100% - 29px), 37% calc(100% - 10px), 31% calc(100% - 28px), 25% calc(100% - 12px), 19% calc(100% - 27px), 13% calc(100% - 9px), 7% calc(100% - 29px), 0% calc(100% - 25px)
+    );
+  }
   .contact-wrap{
     display:grid;
     grid-template-columns:1fr 1fr;
