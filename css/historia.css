@@ -937,7 +937,7 @@
       gap: 40px;
     }
     .historia-image-column {
-      order: -1;
+      order: 1;
     }
     .historia-img-wrapper {
       max-width: 320px;
