@@ -227,7 +227,7 @@
     text-align:center;
     padding:140px 6vw 90px;
     position:relative;
-    background-image: linear-gradient(to bottom, rgba(16, 24, 31, 0.88), rgba(16, 24, 31, 0.82)), url('../img/nuevaportada.jpeg') !important;
+    background-image: linear-gradient(to bottom, rgba(16, 24, 31, 0.88), rgba(16, 24, 31, 0.82)), url('../img/nuevaportada.webp') !important;
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
@@ -398,7 +398,7 @@
 
   /* ===================== BG PIZARRA ===================== */
   .bg-pizarra {
-    background-image: url('../img/pizarra.png');
+    background-image: url('../img/pizarra.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
