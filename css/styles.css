@@ -821,6 +821,57 @@
   }
   .contact-list svg{width:20px; height:20px; color:var(--gold); flex-shrink:0; margin-top:2px;}
 
+  /* ===================== INSTALACIONES ===================== */
+  .instalaciones-wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 6vw;
+    text-align: center;
+  }
+  .instalaciones-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    line-height: 1.6;
+    font-style: italic;
+    color: var(--ink);
+    max-width: 800px;
+    margin: 0 auto 50px;
+    position: relative;
+  }
+  .instalaciones-text::before {
+    content: "“";
+    font-family: 'Fraunces', serif;
+    font-size: 80px;
+    color: rgba(197, 154, 92, 0.25);
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .instalaciones-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 40px;
+  }
+  .instalaciones-img-wrapper {
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    aspect-ratio: 4/3;
+    background: var(--navy-deep);
+  }
+  .instalaciones-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    display: block;
+  }
+  .instalaciones-img-wrapper:hover img {
+    transform: scale(1.05);
+  }
+
   /* ===================== REVIEWS ===================== */
   .reviews-grid {
     display: grid;
@@ -1078,6 +1129,14 @@
         0% 0%, 100% 0%,
         100% calc(100% - 17px), 95% calc(100% - 8px), 89% calc(100% - 19px), 83% calc(100% - 6px), 76% calc(100% - 18px), 68% calc(100% - 8px), 60% calc(100% - 19px), 52% calc(100% - 7px), 44% calc(100% - 18px), 36% calc(100% - 9px), 28% calc(100% - 19px), 20% calc(100% - 6px), 13% calc(100% - 18px), 6% calc(100% - 8px), 0% calc(100% - 17px)
       );
+    }
+    .instalaciones-gallery {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .instalaciones-text {
+      font-size: 19px;
+      margin-bottom: 30px;
     }
   }
 
