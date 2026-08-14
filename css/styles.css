@@ -821,6 +821,48 @@
   }
   .contact-list svg{width:20px; height:20px; color:var(--gold); flex-shrink:0; margin-top:2px;}
 
+  /* Centered Contact Styles */
+  .centered-contact {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .centered-contact .contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--gold-light);
+  }
+  .centered-contact .contact-info h2 {
+    color: var(--gold-light);
+  }
+  .centered-contact .contact-info p {
+    color: var(--gold-light);
+    margin: 0 auto 30px;
+  }
+  .centered-contact .contact-list {
+    align-items: center;
+  }
+  .centered-contact .contact-list li {
+    color: var(--gold-light);
+    display: flex;
+    justify-content: center;
+  }
+  .centered-contact .contact-list svg {
+    color: var(--gold-light);
+  }
+  .centered-contact .contact-actions {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .centered-contact .contact-ig-link {
+    color: var(--gold-light);
+  }
   /* ===================== INSTALACIONES ===================== */
   .instalaciones-wrap-three-col {
     display: grid;
