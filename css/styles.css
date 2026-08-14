@@ -863,6 +863,19 @@
   .centered-contact .contact-ig-link {
     color: var(--gold-light);
   }
+  .centered-contact .btn-solid {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    color: var(--navy-deep) !important; /* Ensure it stays dark navy on gold button */
+  }
+  .centered-contact .btn-solid svg {
+    width: 18px;
+    height: 18px;
+    color: var(--navy-deep) !important;
+    flex-shrink: 0;
+  }
   /* ===================== INSTALACIONES ===================== */
   .instalaciones-wrap-three-col {
     display: grid;
