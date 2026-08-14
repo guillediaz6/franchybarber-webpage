@@ -1027,7 +1027,7 @@
   .map-frame svg{width:56px; height:56px; color:var(--gold);}
   
   .bg-pizarra {
-    background-image: url('../img/pizarra.png');
+    background-image: url('../img/pizarra.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
