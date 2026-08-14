@@ -773,11 +773,22 @@
     font-size:15px;
     text-transform:uppercase;
   }
-  .board-row .time{
-    color:var(--gold-light);
-    font-size:15px;
+  .time-slots {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
   }
-  .board-row.closed .time{color:#8a7f6d; font-style:italic; font-family:'Cormorant Garamond', serif;}
+  .time-slots .time {
+    color: var(--gold-light);
+    font-size: 15px;
+    text-align: right;
+  }
+  .board-row.closed .time {
+    color:#8a7f6d;
+    font-style:italic;
+    font-family:'Cormorant Garamond', serif;
+  }
 
   /* ===================== CONTACT / FOOTER ===================== */
   #contacto {
@@ -1046,6 +1057,9 @@
     }
     .board-row {
       font-size: 13.5px;
+    }
+    .time-slots {
+      gap: 4px;
     }
     #horario {
       padding-top: 100px;
