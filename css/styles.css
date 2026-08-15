@@ -98,7 +98,7 @@
     z-index: 10;
   }
   .header-letrero {
-    height: 140px;
+    height: 95px;
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35));
@@ -1086,7 +1086,7 @@
       height: 55px;
     }
     .header-letrero {
-      height: 100px;
+      height: 75px;
     }
     .services-grid {
       grid-template-columns: repeat(2, 1fr);
@@ -1103,7 +1103,7 @@
       height: 48px;
     }
     .header-letrero {
-      height: 80px;
+      height: 60px;
       max-width: 52vw;
     }
     section {
@@ -1194,7 +1194,7 @@
       height: 38px;
     }
     .header-letrero {
-      height: 60px;
+      height: 45px;
       max-width: 46vw;
     }
 
