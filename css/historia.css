@@ -522,6 +522,8 @@
     margin: 0;
     text-align: justify;
     text-wrap: pretty;
+    hyphens: auto;
+    -webkit-hyphens: auto;
   }
 
   /* Connector line from dot to card */
@@ -571,6 +573,11 @@
     }
     .timeline-content {
       padding: 20px 18px;
+    }
+    .timeline-content p {
+      text-align: left;
+      hyphens: none;
+      -webkit-hyphens: none;
     }
     .timeline-item:nth-child(odd)::before,
     .timeline-item:nth-child(even)::before {
