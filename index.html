@@ -27,7 +27,7 @@
 <link rel="preload" as="image" href="img/nuevaportada.webp" type="image/webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,600&family=Oswald:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Berkshire+Swash&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,600&family=Oswald:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Berkshire+Swash&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 
 <!-- JSON-LD LocalBusiness -->
@@ -48,6 +48,12 @@
     "postalCode": "35018",
     "addressCountry": "ES"
   },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 28.086300,
+    "longitude": -15.485500
+  },
+  "priceRange": "10€ - 25€",
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
@@ -138,7 +144,7 @@
 <section id="nosotros">
   <div class="about-wrap">
     <div class="badge-circle">
-      <img src="img/logo.webp" alt="Peluquería Franchy Barber Las Mesas Logo" class="about-logo">
+      <img src="img/logo.webp" alt="Peluquería Franchy Barber Las Mesas Logo" class="about-logo" loading="lazy">
     </div>
     <div class="about-text">
       <span class="eyebrow">Nuestra historia</span>
@@ -220,12 +226,12 @@
     <div class="carousel-scene">
       <!-- Reemplaza cada src con la ruta de tu imagen real -->
       <div class="carousel-card"><div class="card-inner"><img src="img/corte1.webp" alt="Corte degradado profesional en peluquería Las Mesas"></div></div>
-      <div class="carousel-card"><div class="card-inner"><img src="img/corte2.webp" alt="Afeitado clásico a navaja en barbería Gran Canaria"></div></div>
-      <div class="carousel-card"><div class="card-inner"><img src="img/corte3.webp" alt="Interior de la peluquería Franchy Barber en Las Mesas"></div></div>
-      <div class="carousel-card"><div class="card-inner"><img src="img/corte4.webp" alt="Trabajo de tijera y peine por peluquero experto"></div></div>
-      <div class="carousel-card"><div class="card-inner"><img src="img/corte5.webp" alt="Herramientas de barbero profesional"></div></div>
-      <div class="carousel-card"><div class="card-inner"><img src="img/corte6.webp" alt="Tratamiento con toalla caliente en barbería"></div></div>
-      <div class="carousel-card"><div class="card-inner"><img src="img/corte7.webp" alt="Corte de pelo moderno en barbería Franchy Barber"></div></div>
+      <div class="carousel-card"><div class="card-inner"><img src="img/corte2.webp" alt="Afeitado clásico a navaja en barbería Gran Canaria" loading="lazy"></div></div>
+      <div class="carousel-card"><div class="card-inner"><img src="img/corte3.webp" alt="Interior de la peluquería Franchy Barber en Las Mesas" loading="lazy"></div></div>
+      <div class="carousel-card"><div class="card-inner"><img src="img/corte4.webp" alt="Trabajo de tijera y peine por peluquero experto" loading="lazy"></div></div>
+      <div class="carousel-card"><div class="card-inner"><img src="img/corte5.webp" alt="Herramientas de barbero profesional" loading="lazy"></div></div>
+      <div class="carousel-card"><div class="card-inner"><img src="img/corte6.webp" alt="Tratamiento con toalla caliente en barbería" loading="lazy"></div></div>
+      <div class="carousel-card"><div class="card-inner"><img src="img/corte7.webp" alt="Corte de pelo moderno en barbería Franchy Barber" loading="lazy"></div></div>
     </div>
     <button class="carousel-btn carousel-prev" aria-label="Imagen anterior">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
@@ -393,4 +399,5 @@
 <script src="js/main.js"></script>
 </body>
 </html>
+
 
