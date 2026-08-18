@@ -652,6 +652,9 @@
     object-fit: cover;
     display: block;
   }
+  .carousel-card img[src*="corte3.webp"] {
+    object-position: left center;
+  }
 
   /* Card activa — protagonista */
   .carousel-card.is-active { cursor: default; }
