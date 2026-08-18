@@ -506,6 +506,9 @@
     padding: 28px 26px;
     backdrop-filter: blur(4px);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    min-height: 190px;
   }
   .timeline-content:hover {
     border-color: rgba(199,154,92,0.45);
@@ -517,6 +520,8 @@
     line-height: 1.65;
     opacity: 0.9;
     margin: 0;
+    text-align: justify;
+    text-wrap: pretty;
   }
 
   /* Connector line from dot to card */
