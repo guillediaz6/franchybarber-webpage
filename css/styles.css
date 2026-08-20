@@ -526,6 +526,14 @@
     will-change: transform;
     pointer-events: none;
   }
+  @media (min-width: 1024px) {
+    .servicios-parallax-bg {
+      top: 0; bottom: 0;
+      background-attachment: fixed;
+      transform: none !important;
+      will-change: auto;
+    }
+  }
   #servicios .section-head, #servicios .services-grid {
     position: relative;
     z-index: 1;
